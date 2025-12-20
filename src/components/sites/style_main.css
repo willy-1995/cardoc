@@ -1,0 +1,20 @@
+:root{
+    --background-color: rgb(95, 29, 95);
+    --maindiv-color: rgb(139, 68, 139);
+    --subdiv-color: rgb(109, 65, 109);
+    --button-color: rgb(43, 129, 160);
+}
+
+html{
+    background-color: var(--background-color);
+}
+
+.body-div{
+    width: 100%;
+    min-height: 100vh;
+}
+
+button{
+    background-color: var(--button-color);
+    color: white;
+}

@@ -1,0 +1,19 @@
+{
+    "name": "lucas/cardoc",
+    "description": "Digital driving and vehicle documentation",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Lucas\\Cardoc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas Wingenfeld",
+            "email": "lucaswingenfeld@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
