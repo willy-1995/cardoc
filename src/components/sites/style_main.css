@@ -1,8 +1,13 @@
 :root{
     --background-color: rgb(95, 29, 95);
     --maindiv-color: rgb(139, 68, 139);
-    --subdiv-color: rgb(109, 65, 109);
+    --subdiv-color: rgb(146, 109, 146);
     --button-color: rgb(43, 129, 160);
+}
+
+*{
+    margin: 0;
+    padding: 0;
 }
 
 html{
@@ -10,11 +15,69 @@ html{
 }
 
 .body-div{
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
+    background-color: var(--background-color);
+    color: white;
 }
 
-button{
+.main-div{
+    background-color: var(--maindiv-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 15px;
+    padding: 2%;
+}
+
+
+
+button, .button{
     background-color: var(--button-color);
     color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: white;
+    color: var(--button-color);
+    transition: all ease-in-out 200ms;
+
+}
+
+input{
+    border-radius: 15px;
+    border: none;
+    padding: 5px 20px;
+}
+
+input:focus{
+    border: none;
+}
+
+.link{
+    background-color: var(--button-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    border-radius: 15px;
+}
+
+.link:hover{
+    color: var(--button-color);
+    background-color: white;
+    transition: all ease-in-out 200ms;
+}
+
+/*=====RESPONSIVE=====*/
+
+@media(max-width: 800px){
+    html{
+        font-size: 1.3rem;
+    }
 }

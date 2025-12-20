@@ -1,0 +1,33 @@
+:root {
+    --background-color: rgb(95, 29, 95);
+    --maindiv-color: rgb(139, 68, 139);
+    --subdiv-color: rgb(109, 65, 109);
+    --button-color: rgb(43, 129, 160);
+}
+
+.body-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#landing-logo-div {
+    background-color: white;
+    position: absolute;
+    top: 50px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: black;
+    
+}
+
+
+/*=====RESPONSIVE=====*/
+
+@media(max-width: 800px){
+    
+}

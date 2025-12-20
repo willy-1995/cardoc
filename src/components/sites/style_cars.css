@@ -1,0 +1,16 @@
+:root{
+    --background-color: rgb(95, 29, 95);
+    --maindiv-color: rgb(139, 68, 139);
+    --subdiv-color: rgb(146, 109, 146);
+    --button-color: rgb(43, 129, 160);
+}
+
+
+#vehicle-list{
+    min-height: 100px;
+}
+
+#add-button{
+    position: absolute;
+    right: 20px;
+}

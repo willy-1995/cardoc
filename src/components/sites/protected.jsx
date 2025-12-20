@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { apiFetch } from "../../api";
+import Cars from "./cars";
+//STYLE
+import "./style_main.css";
+import "./style_protected.css";
 
 function Protected() {
     //prepare data to use in frontend
@@ -18,12 +22,19 @@ function Protected() {
 
     const logout = () => {
         localStorage.removeItem("token");
-        window.location.href = "/login"; 
+        window.location.href = "/login";
     }
 
     return (
         <div className="body-div">
-            <h1>Willkommen im geschüzten Bereich User mit der Email: {email}</h1>
+            <p id="greeting">Hallo {email}</p>
+            <div id="cars-container">
+                <h3>Dein Fuhrpark</h3>
+
+                <Cars />
+
+            </div>
+
             <button onClick={logout}>Ausloggen</button>
         </div>
     )

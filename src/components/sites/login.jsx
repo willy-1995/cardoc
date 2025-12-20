@@ -1,8 +1,13 @@
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./style_main.css";
+import "./style_login.css";
+
 
 function Login() {
 
+    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
     const loginHandler = async (e) => {
@@ -34,14 +39,14 @@ function Login() {
             if (response.status !== 200) {
                 return;
             }
-            
+
             const result = await response.json();
             //const text = await response.text();
             //console.log("SERVER RESPONSE:", text);
 
 
             if (result.success) {
-                //msgDiv.textContent = ; Login success animation
+                setMessage("Login erfolgreich!\nWeiterleitung...");
                 form.reset();
                 setTimeout(() => {
                     navigate("/protected");
@@ -51,25 +56,29 @@ function Login() {
                 localStorage.setItem("token", result.token);
             }
             else {
-                msgDiv.textContent = result.message;
+                setMessage(result.message);
             }
 
         } catch (error) {
             console.error(error); //DEBUG
-            msgDiv.textContent = "Serverfehler: " + error.message;
+            setMessage( "Serverfehler: " + error.message);
         }
     }
 
 
     return (
         <div className="body-div">
-            <form id="login-form" onSubmit={loginHandler}>
+            <div id="landing-logo-div">
+                <h1>cardoc</h1>
+                <h2>digital car management</h2>
+            </div>
+            <form id="login-form" onSubmit={loginHandler} className="main-div">
                 <input type="email" name="email" placeholder="Deine E-Mail-Adresse" />
                 <input type="password" name="password" placeholder="Dein Passwort" />
-                <input type="submit" className="button" value={"Einloggen"} />
+                <button type="submit">Einloggen</button>
             </form>
             <div id="msg-login">
-
+                {message}
             </div>
         </div>
     )
