@@ -29,7 +29,6 @@ function Protected() {
         <div className="body-div">
             <p id="greeting">Hallo {email}</p>
             <div id="cars-container">
-                <h3>Dein Fuhrpark</h3>
 
                 <Cars />
 

@@ -22,15 +22,17 @@ html{
 }
 
 .main-div{
-    background-color: var(--maindiv-color);
     display: flex;
     flex-direction: column;
     gap: 10px;
     border-radius: 15px;
     padding: 2%;
+    background-color: var(--maindiv-color);
 }
 
-
+.body-sub-div{
+    background-color: var(--background-color); /*for vehicle list background*/
+}
 
 button, .button{
     background-color: var(--button-color);
@@ -72,6 +74,81 @@ input:focus{
     color: var(--button-color);
     background-color: white;
     transition: all ease-in-out 200ms;
+}
+
+dialog{
+    border: none;
+    border-radius: 15px;
+    background-color: var(--subdiv-color);
+    color: white;
+    padding: 10px;
+    width: 40%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dialog-div{
+    display: flex;
+    flex-direction: column;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.dialog-div h3{
+    padding-bottom: 20px;
+}
+
+dialog input{
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+    width: 80%;
+
+}
+
+.dialog-button-div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.main-details{
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: var(--maindiv-color);
+    border-radius: 15px;
+    padding-bottom: 10px;
+}
+
+.sub-details{
+    background-color: var(--subdiv-color);
+    border-radius: 15px;
+}
+
+summary{
+    width: 50%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Firefox */
+details > summary {
+    list-style: none;
 }
 
 /*=====RESPONSIVE=====*/
