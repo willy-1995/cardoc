@@ -22,7 +22,7 @@ function Registration() {
 
 
         try {
-            const response = await fetch('http://localhost/react/cardoc/backend/registration.php', {
+            const response = await fetch('http://localhost/cardoc/backend/registration.php', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style_main.css";
 import "./style_login.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCircleCheck} from '@fortawesome/free-solid-svg-icons';
 
 
 function Login() {
@@ -26,8 +28,12 @@ function Login() {
             password: form.password.value
         };
 
+     
+
+
+        
         try {
-            const response = await fetch('http://localhost/react/cardoc/backend/login.php', {
+            const response = await fetch('http://localhost/cardoc/backend/login.php', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -41,12 +47,13 @@ function Login() {
             }
 
             const result = await response.json();
+            //DEBUG
             //const text = await response.text();
             //console.log("SERVER RESPONSE:", text);
 
 
             if (result.success) {
-                setMessage("Login erfolgreich!\nWeiterleitung...");
+                setMessage(<span id="login-check-message"><FontAwesomeIcon icon={faCircleCheck} className="icon"/> Login erfolgreich!</span>);
                 form.reset();
                 setTimeout(() => {
                     navigate("/protected");
@@ -62,7 +69,7 @@ function Login() {
         } catch (error) {
             console.error(error); //DEBUG
             setMessage( "Serverfehler: " + error.message);
-        }
+        } 
     }
 
 

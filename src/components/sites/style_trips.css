@@ -1,0 +1,45 @@
+:root {
+    --background-color: rgb(95, 29, 95);
+    --maindiv-color: rgb(139, 68, 139);
+    --subdiv-color: rgb(146, 109, 146);
+    --button-color: rgb(43, 129, 160);
+}
+
+#trips-header-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 5px;
+
+}
+
+thead{
+    border-bottom: 10px solid var(--background-color);
+}
+
+th{
+    background-color: var(--maindiv-color);
+}
+
+tbody tr:hover{
+    transition: all ease-in-out 200ms;
+    background-color: var(--subdiv-color);
+}
+
+
+td,
+th {
+    text-align: center;
+    padding: 5px;
+}
+
+
+
+tbody tr td{
+    border-bottom: 10px solid var(--background-color);
+}

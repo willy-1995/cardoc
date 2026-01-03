@@ -21,6 +21,26 @@ html{
     color: white;
 }
 
+.icon{
+    font-size: 1.5rem;
+}
+
+.content-container{
+    position: fixed;
+    top: 100px;
+    height: 700px;
+    width: 80%;
+}
+
+#home-div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 25px;
+    position: fixed;
+    top: 25px;
+}
+
 .main-div{
     display: flex;
     flex-direction: column;
@@ -50,7 +70,14 @@ button:hover{
 
 }
 
-input{
+.button:hover{
+    background-color: white;
+    color: var(--button-color);
+    transition: all ease-in-out 200ms;
+
+}
+
+input, select{
     border-radius: 15px;
     border: none;
     padding: 5px 20px;
@@ -58,6 +85,12 @@ input{
 
 input:focus{
     border: none;
+}
+
+select{
+    width: 87%;
+    margin: 0 auto;
+    margin-bottom: 25px;
 }
 
 .link{

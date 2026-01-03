@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import "./style_main.css";
 import "./style_cars.css";
 
@@ -17,7 +18,7 @@ function Cars() {
     //get vehicles list
     const fetchVehicles = async () => {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost/react/cardoc/backend/vehicles_list.php",
+        const res = await fetch("http://localhost/cardoc/backend/vehicles_list.php",
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -60,7 +61,7 @@ function Cars() {
         try {
             const token = localStorage.getItem("token");
             const response = await fetch(
-                "http://localhost/react/cardoc/backend/vehicles_list.php",
+                "http://localhost/cardoc/backend/vehicles_list.php",
                 {
                     method: "POST",
                     headers: {
@@ -108,12 +109,7 @@ function Cars() {
 
     };
 
-    //===== SETTINGS======
-    //=====vehicle main info options======
-    //edit
-    const handleOptionsMain = () => {
 
-    }
 
 
 
@@ -144,15 +140,18 @@ function Cars() {
                     <details key={index} className="main-details">
                         <summary>
                             <span>{vehicle.brand}</span> <span>{vehicle.model}</span> <span>{vehicle.license_plate}</span>
+
                         </summary>
 
                         <div className="more-data-div">
-                            <details className="sub-details">
-                                <summary>Weitere Daten</summary>
-                            </details>
-                            <details className="sub-details">
-                                <summary>Fahrtenbuch </summary>
-                            </details>
+                            <Link to={`/vehicles/${vehicle.id}/driversbook`} className="button link-button" >
+                                Fahrtenbuch
+                            </Link>
+                            <Link to={`/vehicles/${vehicle.id}/vehicleDetails`} className="button link-button">
+                                Fahrzeugdaten
+                            </Link>
+                            
+
                         </div>
                     </details>
                 ))}

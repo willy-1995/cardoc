@@ -25,7 +25,6 @@
 .more-data-div {
     background-color: var(--maindiv-color);
     display: flex;
-    flex-direction: column;
     gap: 10px;
     width: 98%;
     margin: 0 auto;
@@ -34,4 +33,11 @@
 
 .vehicle-options{
     font-weight: 800;
+}
+
+.link-button{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { apiFetch } from "../../api";
 import Cars from "./cars";
@@ -12,7 +13,7 @@ function Protected() {
     //more data..
 
     useEffect(() => {
-        apiFetch("http://localhost/react/cardoc/backend/profile.php")
+        apiFetch("http://localhost/cardoc/backend/profile.php")
             .then(data => {
                 setEmail(data.email);
                 console.log(data);
@@ -27,14 +28,21 @@ function Protected() {
 
     return (
         <div className="body-div">
-            <p id="greeting">Hallo {email}</p>
+            <div id="greeting">
+                <p>Hallo {email}</p>
+                <Link to={"/profile"} className="button">
+                    Profil
+                </Link>
+                <button onClick={logout}>Ausloggen</button>
+            </div>
+            
             <div id="cars-container">
 
                 <Cars />
 
             </div>
 
-            <button onClick={logout}>Ausloggen</button>
+            
         </div>
     )
 }

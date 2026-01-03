@@ -4,6 +4,12 @@ import Landing from './components/sites/landing';
 import Registration from './components/sites/registration';
 import Login from './components/sites/login';
 import Protected from './components/sites/protected';
+import Driversbook from './components/sites/driversbook';
+import VehicleDetails from './components/sites/vehicleDetails';
+import Cars from './components/sites/cars';
+import Profile from './components/sites/profile';
+//components
+import Home from './components/home';
 
 function App() {
   
@@ -17,6 +23,12 @@ function App() {
           <Route path='/login' element={<Login />}/>
           {/*protected sites */}
           <Route path='/protected' element={<Protected />}/>
+          <Route path='/vehicles' element={<Cars />}/>
+          <Route path='/vehicles/:id/driversbook' element={<Driversbook />}/> {/**create Route with id for url */}
+          <Route path='/vehicles/:id/vehicleDetails' element={<VehicleDetails />}/> {/**create Route with id for url */}
+          <Route path='/profile' element={<Profile />}/>
+
+
         </Routes>
       </Router>
    </div>
