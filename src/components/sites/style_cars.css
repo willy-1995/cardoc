@@ -15,6 +15,7 @@
 #vehicles-header-div{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 25px;
 }
 
 
@@ -23,12 +24,13 @@
 }
 
 .more-data-div {
-    background-color: var(--maindiv-color);
     display: flex;
     gap: 10px;
-    width: 98%;
+    max-width: 95%;
     margin: 0 auto;
     margin-top: 20px;
+    padding: 5px;
+    border-radius: 15px;
 }
 
 .vehicle-options{
@@ -36,8 +38,58 @@
 }
 
 .link-button{
-    width: 10%;
+    min-width: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
+    
+}
+
+
+.main-details {
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: var(--maindiv-color);
+    border-radius: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+.main-details:hover{
+    background-color: var(--subdiv-color);
+}
+
+.sub-details {
+    background-color: var(--subdiv-color);
+    border-radius: 15px;
+}
+
+summary {
+    width: 50%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    
+
+}
+
+
+@media(max-width:600px){
+    summary{
+        width: 100%;
+    }
+
+    #add-button{
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+
+    .more-data-div{
+        justify-content: center;
+    }
 }

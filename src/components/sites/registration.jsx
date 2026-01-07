@@ -30,7 +30,7 @@ function Registration() {
                 body: JSON.stringify(data)
             });
 
-            
+
             //ERROR HANDLING
 
 
@@ -58,11 +58,13 @@ function Registration() {
 
     return (
         <div className="body-div">
-            <form id="regist-form" onSubmit={registHandler}>
+            <form id="regist-form" onSubmit={registHandler} className="main-div">
+
+                <h1 id="regist-heading">Registrierung</h1>
                 <input type="text" name="username" placeholder="Dein Nutzername" />
                 <input type="email" name="email" placeholder="Deine E-Mail-Adresse" />
                 <input type="password" name="password" placeholder="Dein Passwort" />
-                <input type="submit" className="button" value={"Registrieren"} />
+                <button type="submit">Registrieren</button>
             </form>
             <div id="msg-regist">
 

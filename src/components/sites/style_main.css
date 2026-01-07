@@ -1,38 +1,38 @@
-:root{
+:root {
     --background-color: rgb(95, 29, 95);
     --maindiv-color: rgb(139, 68, 139);
-    --subdiv-color: rgb(146, 109, 146);
+    --subdiv-color: rgb(150, 75, 150);
     --button-color: rgb(43, 129, 160);
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-html{
+html {
     background-color: var(--background-color);
 }
 
-.body-div{
+.body-div {
     width: 100vw;
     min-height: 100vh;
     background-color: var(--background-color);
     color: white;
 }
 
-.icon{
+.icon {
     font-size: 1.5rem;
 }
 
-.content-container{
+.content-container {
     position: fixed;
     top: 100px;
     height: 700px;
     width: 80%;
 }
 
-#home-div{
+#home-div {
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -41,20 +41,39 @@ html{
     top: 25px;
 }
 
-.main-div{
+
+
+.main-div {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
     border-radius: 15px;
-    padding: 2%;
+    padding: 3%;
     background-color: var(--maindiv-color);
 }
 
-.body-sub-div{
-    background-color: var(--background-color); /*for vehicle list background*/
+
+.main-div button {
+    width: 70%;
+    padding: 3% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-button, .button{
+.main-div h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.body-sub-div {
+    background-color: var(--background-color);
+    /*for vehicle list background*/
+}
+
+button,
+.button {
     background-color: var(--button-color);
     color: white;
     border: none;
@@ -63,37 +82,48 @@ button, .button{
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background-color: white;
     color: var(--button-color);
     transition: all ease-in-out 200ms;
 
 }
 
-.button:hover{
+.button:hover {
     background-color: white;
     color: var(--button-color);
     transition: all ease-in-out 200ms;
 
 }
 
-input, select{
+
+input,
+select {
     border-radius: 15px;
     border: none;
     padding: 5px 20px;
+    height: 30px;
+    max-width: 100%;
+    margin-bottom: 25px;
+
 }
 
-input:focus{
+input:focus {
     border: none;
 }
 
-select{
-    width: 87%;
-    margin: 0 auto;
-    margin-bottom: 25px;
+input::placeholder {
+    font-size: 1.05rem;
 }
 
-.link{
+select {
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.link {
     background-color: var(--button-color);
     color: white;
     display: flex;
@@ -103,13 +133,13 @@ select{
     border-radius: 15px;
 }
 
-.link:hover{
+.link:hover {
     color: var(--button-color);
     background-color: white;
     transition: all ease-in-out 200ms;
 }
 
-dialog{
+dialog {
     border: none;
     border-radius: 15px;
     background-color: var(--subdiv-color);
@@ -122,72 +152,78 @@ dialog{
     transform: translate(-50%, -50%);
 }
 
-.dialog-div{
+.dialog-div {
     display: flex;
     flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
 }
 
 dialog::backdrop {
     background: rgba(0, 0, 0, 0.6);
 }
 
-.dialog-div h3{
+.dialog-div h3 {
     padding-bottom: 20px;
-}
-
-dialog input{
-    margin: 0 auto;
-    margin-bottom: 20px;
-
-    width: 80%;
 
 }
 
-.dialog-button-div{
+
+
+.dialog-button-div {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
 }
 
-.main-details{
-    margin-bottom: 20px;
-    width: 100%;
-    background-color: var(--maindiv-color);
-    border-radius: 15px;
-    padding-bottom: 10px;
-}
-
-.sub-details{
-    background-color: var(--subdiv-color);
-    border-radius: 15px;
-}
-
-summary{
-    width: 50%;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    font-weight: 600;
-    border-radius: 15px;
-    cursor: pointer;
-    
-}
-
-details > summary::-webkit-details-marker {
+details>summary::-webkit-details-marker {
     display: none;
 }
 
 /* Firefox */
-details > summary {
+details>summary {
     list-style: none;
 }
 
 /*=====RESPONSIVE=====*/
 
-@media(max-width: 800px){
-    html{
-        font-size: 1.3rem;
+@media(max-width: 600px) {
+    html {
+        font-size: 1.2rem;
+    }
+
+    h1{
+        margin-bottom: 25px;
+    }
+
+    .main-div {
+        width: 80%;
+    }
+
+    .main-div input {
+        max-width: 90%;
+    }
+
+    #regist-heading {
+        font-size: 2.5rem;
+    }
+
+    dialog {
+        width: 90%;
+    }
+
+    .dialog-div h3 {
+        text-align: center;
+    }
+
+    .dialog-button-div {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .dialog-button-div button {
+        width: 70%;
+        margin: 0 auto;
     }
 }

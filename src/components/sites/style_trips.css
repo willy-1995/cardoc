@@ -43,3 +43,38 @@ th {
 tbody tr td{
     border-bottom: 10px solid var(--background-color);
 }
+
+@media(max-width: 1000px ){
+    thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  td::before {/*before because attribute shall be placed before data*/
+    content: attr(data-label); /*read html attribute*/
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}

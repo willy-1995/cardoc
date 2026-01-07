@@ -75,11 +75,8 @@ function Login() {
 
     return (
         <div className="body-div">
-            <div id="landing-logo-div">
-                <h1>cardoc</h1>
-                <h2>digital car management</h2>
-            </div>
             <form id="login-form" onSubmit={loginHandler} className="main-div">
+                <h1>Login</h1>
                 <input type="email" name="email" placeholder="Deine E-Mail-Adresse" />
                 <input type="password" name="password" placeholder="Dein Passwort" />
                 <button type="submit">Einloggen</button>

@@ -213,17 +213,18 @@ function GetVehicleTrips() {
                         <tbody>
                             {trips.map(trip => (
                                 <tr key={trip.id}>
-                                    <td>{trip.start_time}</td>
-                                    <td>{trip.end_time}</td>
-                                    <td>{trip.start_location}</td>
-                                    <td>{trip.end_location}</td>
-                                    <td>{trip.start_km}</td>
-                                    <td>{trip.end_km}</td>
-                                    <td>{trip.distance_km}</td>
-                                    <td>{trip.purpose}</td>
-                                    <td>{trip.trip_type}</td>
-                                    <td>{trip.driver}</td>
-                                    <td>{trip.created_at}</td>
+                                    <td data-label="Startzeit">{trip.start_time}</td>
+                                    <td data-label="Endzeit">{trip.end_time}</td>
+                                    <td data-label="Startpunkt">{trip.start_location}</td>
+                                    <td data-label="Zielpunkt">{trip.end_location}</td>
+                                    <td data-label="KM-Stand Start">{trip.start_km}</td>
+                                    <td data-label="KM-Stand Ziel">{trip.end_km}</td>
+                                    <td data-label="Distanz">{trip.distance_km}</td>
+                                    <td data-label="Zweck">{trip.purpose}</td>
+                                    <td data-label="Art">{trip.trip_type}</td>
+                                    <td data-label="Fahrer">{trip.driver}</td>
+                                    <td data-label="erstellt am">{trip.created_at}</td>
+
                                 </tr>
                             ))}
                         </tbody>

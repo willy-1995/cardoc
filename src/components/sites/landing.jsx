@@ -6,10 +6,6 @@ import "./style_landing.css";
 function Landing() {
     return (
         <div className="body-div">
-            <div id="landing-logo-div">
-                <h1>cardoc</h1>
-                <h2>digital car management</h2>
-            </div>
             <div className="main-div" id="user-access-div">
                 <Link to={"/login"} className="link">
                     Login
