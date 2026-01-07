@@ -48,7 +48,7 @@ try {
 
 //load user
 $stmt = $pdo->prepare(
-    "SELECT id, email, password FROM users WHERE email = ? LIMIT 1"
+    "SELECT id, email, password, username FROM users WHERE email = ? LIMIT 1"
 );
 $stmt->execute([$email]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -65,8 +65,9 @@ if (!$user || !password_verify($password, $user["password"])) {
 //===== JWT
 $payload = [
     "user_id" => $user["id"],
-    "email"   => $user["email"],
-    "exp"     => time() + 7200 // valid for 2 h
+    "email" => $user["email"],
+    "username" => $user["username"],
+    "exp" => time() + 7200 // valid for 2 h
 ];
 
 $jwt = JWT::encode(
@@ -78,7 +79,10 @@ $jwt = JWT::encode(
 //success
 echo json_encode([
     "success" => true,
-    "token"   => $jwt
+    "token" => $jwt,
+    "user_id" => $user["id"],
+    "email" => $user["email"],
+    "username" => $user["username"]
 ]);
 
 

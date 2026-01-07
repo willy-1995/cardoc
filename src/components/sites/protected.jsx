@@ -10,14 +10,16 @@ import "./style_protected.css";
 function Protected() {
     //prepare data to use in frontend
     const [email, setEmail] = useState("");
-    //more data..
+    const [username, setUsername] = useState("");
+    
 
     useEffect(() => {
         apiFetch("http://localhost/cardoc/backend/profile.php")
             .then(data => {
                 setEmail(data.email);
+                setUsername(data.username);
                 console.log(data);
-                //setUser(data.user);
+                
             });
     }, []);
 
@@ -29,7 +31,7 @@ function Protected() {
     return (
         <div className="body-div">
             <div id="greeting">
-                <p>Hallo {email}</p>
+                <p>Hallo {username}</p>
                 <Link to={"/profile"} className="button">
                     Profil
                 </Link>

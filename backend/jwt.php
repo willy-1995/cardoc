@@ -5,8 +5,9 @@ use Firebase\JWT\JWT;
 $secretKey = $_ENV["JWT_SECRET"];
 
 $payload = [
-    "user_id" => $decoded -> $userId,
+    "user_id" => $userId,
     "email" => $email,
+    "username"=> $username,
     "exp" => time() + 3600
 ];
 

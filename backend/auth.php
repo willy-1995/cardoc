@@ -41,6 +41,8 @@ try {
 //=====USER DATA
 $userId = $decoded->user_id;
 $email  = $decoded->email;
+$username = $decoded->username ?? "";
+
 
 
 ?>

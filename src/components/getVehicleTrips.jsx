@@ -144,7 +144,48 @@ function GetVehicleTrips() {
         } catch (err) {
             console.error("FETCH FEHLER:", err);
         }
+    }
+
+    //=====CANCEL TRIP=====
+    const cancelTrip = async (tripId) => {
+        if (!confirm("Fahrt wirklich stornieren?")) return;
+
+        try {
+            const token = localStorage.getItem("token");
+
+            const response = await fetch(
+                "http://localhost/cardoc/backend/trips.php",
+                {
+                    method: "POST", 
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({
+                        action: "cancel",
+                        trip_id: tripId,
+                    }),
+                }
+            );
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+                // update ui
+                setTrips(prev =>
+                    prev.map(t =>
+                        t.id === tripId ? { ...t, canceled: 1 } : t
+                    )
+                );
+            } else {
+                alert(result.message || "Fehler beim Stornieren");
+            }
+
+        } catch (err) {
+            console.error("FETCH FEHLER:", err);
+        }
     };
+
 
     return (
         <div className="content-container">
@@ -167,18 +208,18 @@ function GetVehicleTrips() {
                         <div id="wng-trips" className="msg-div">
                             {warning}
                         </div>
-                        <input placeholder="Fahrer" value={driver} onChange={e => setDriver(e.target.value)} />
-                        <input type="datetime-local" value={start_time} onChange={e => setStart_time(e.target.value)} />
-                        <input type="datetime-local" value={end_time} onChange={e => setEnd_time(e.target.value)} />
-                        <input placeholder="Start km" value={start_km} onChange={e => setStart_km(e.target.value)} />
-                        <input placeholder="End km" value={end_km} onChange={e => setEnd_km(e.target.value)} />
+                        <input placeholder="Fahrer" value={driver} onChange={e => setDriver(e.target.value)} required />
+                        <input type="datetime-local" value={start_time} onChange={e => setStart_time(e.target.value)} required />
+                        <input type="datetime-local" value={end_time} onChange={e => setEnd_time(e.target.value)} required />
+                        <input placeholder="Start km" value={start_km} onChange={e => setStart_km(e.target.value)} required />
+                        <input placeholder="End km" value={end_km} onChange={e => setEnd_km(e.target.value)} required />
                         <input type="text" value={start_km && end_km
                             ? Number(end_km) - Number(start_km)
                             : ""} disabled />
-                        <input placeholder="Startort" value={start_location} onChange={e => setStart_location(e.target.value)} />
-                        <input placeholder="Zielort" value={end_location} onChange={e => setEnd_location(e.target.value)} />
-                        <input placeholder="Zweck" value={purpose} onChange={e => setPurpose(e.target.value)} />
-                        <select name="trip_type">
+                        <input placeholder="Startort" value={start_location} onChange={e => setStart_location(e.target.value)} required />
+                        <input placeholder="Zielort" value={end_location} onChange={e => setEnd_location(e.target.value)} required />
+                        <input placeholder="Zweck" value={purpose} onChange={e => setPurpose(e.target.value)} required />
+                        <select name="trip_type" required>
                             <option value="business">Geschäftlich</option>
                             <option value="private">Privat</option>
                             <option value="commute">Pendeln</option>
@@ -194,41 +235,45 @@ function GetVehicleTrips() {
                 {trips.length === 0 ? (
                     <p>Keine Fahrten vorhanden</p>
                 ) : (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Startzeit</th>
-                                <th>Endzeit</th>
-                                <th>Startpunkt</th>
-                                <th>Zielpunkt</th>
-                                <th>KM-Stand Start</th>
-                                <th>KM-Stand Ziel</th>
-                                <th>Distanz</th>
-                                <th>Zweck</th>
-                                <th>Art</th>
-                                <th>Fahrer</th>
-                                <th>erstellt am</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {trips.map(trip => (
-                                <tr key={trip.id}>
-                                    <td data-label="Startzeit">{trip.start_time}</td>
-                                    <td data-label="Endzeit">{trip.end_time}</td>
-                                    <td data-label="Startpunkt">{trip.start_location}</td>
-                                    <td data-label="Zielpunkt">{trip.end_location}</td>
-                                    <td data-label="KM-Stand Start">{trip.start_km}</td>
-                                    <td data-label="KM-Stand Ziel">{trip.end_km}</td>
-                                    <td data-label="Distanz">{trip.distance_km}</td>
-                                    <td data-label="Zweck">{trip.purpose}</td>
-                                    <td data-label="Art">{trip.trip_type}</td>
-                                    <td data-label="Fahrer">{trip.driver}</td>
-                                    <td data-label="erstellt am">{trip.created_at}</td>
+                    <div className="table-div">
 
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Startzeit</th>
+                                    <th>Endzeit</th>
+                                    <th>Startpunkt</th>
+                                    <th>Zielpunkt</th>
+                                    <th>KM-Stand Start</th>
+                                    <th>KM-Stand Ziel</th>
+                                    <th>Distanz</th>
+                                    <th>Zweck</th>
+                                    <th>Art</th>
+                                    <th>Fahrer</th>
+                                    <th>erstellt am</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {trips.map(trip => (
+                                    <tr key={trip.id} onClick={() => cancelTrip(trip.id)}>
+                                        <td data-label="Startzeit">{trip.start_time}</td>
+                                        <td data-label="Endzeit">{trip.end_time}</td>
+                                        <td data-label="Startpunkt">{trip.start_location}</td>
+                                        <td data-label="Zielpunkt">{trip.end_location}</td>
+                                        <td data-label="KM-Stand Start">{trip.start_km}</td>
+                                        <td data-label="KM-Stand Ziel">{trip.end_km}</td>
+                                        <td data-label="Distanz">{trip.distance_km}</td>
+                                        <td data-label="Zweck">{trip.purpose}</td>
+                                        <td data-label="Art">{trip.trip_type}</td>
+                                        <td data-label="Fahrer">{trip.driver}</td>
+                                        <td data-label="erstellt am">{trip.created_at}</td>
+
+
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
 
             </div>

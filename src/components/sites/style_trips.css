@@ -1,53 +1,70 @@
 :root {
-    --background-color: rgb(95, 29, 95);
-    --maindiv-color: rgb(139, 68, 139);
-    --subdiv-color: rgb(146, 109, 146);
-    --button-color: rgb(43, 129, 160);
+  --background-color: rgb(95, 29, 95);
+  --maindiv-color: rgb(139, 68, 139);
+  --subdiv-color: rgb(146, 109, 146);
+  --button-color: rgb(43, 129, 160);
 }
 
-#trips-header-div{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 50px;
+#trips-header-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 5px;
+  border-collapse: collapse;
+  border-spacing: 5px;
 
 }
 
-thead{
-    border-bottom: 10px solid var(--background-color);
+thead {
+  border-bottom: 10px solid var(--background-color);
 }
 
-th{
-    background-color: var(--maindiv-color);
+th {
+  background-color: var(--maindiv-color);
 }
 
-tbody tr:hover{
-    transition: all ease-in-out 200ms;
-    background-color: var(--subdiv-color);
+tbody tr:hover {
+  transition: all ease-in-out 200ms;
+  background-color: var(--subdiv-color);
 }
 
 
 td,
 th {
-    text-align: center;
-    padding: 5px;
+  text-align: center;
+  padding: 5px;
 }
 
 
 
-tbody tr td{
-    border-bottom: 10px solid var(--background-color);
+tbody tr td {
+  border-bottom: 10px solid var(--background-color);
 }
 
-@media(max-width: 1000px ){
-    thead {
+tr{
+  cursor: pointer;
+}
+
+@media(max-width: 1000px) {
+  thead {
     display: none;
   }
+
+  .table-div {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  table {
+    border-spacing: 0;
+  }
+
 
   table,
   tbody,
@@ -58,20 +75,24 @@ tbody tr td{
   }
 
   tr {
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 8px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    background-color: var(--maindiv-color);
+   
   }
 
   td {
     position: relative;
     padding-left: 50%;
     text-align: left;
+    margin: 0;
+    border-bottom: none !important;
   }
 
-  td::before {/*before because attribute shall be placed before data*/
-    content: attr(data-label); /*read html attribute*/
+  td::before {
+    /*before because attribute shall be placed before data*/
+    content: attr(data-label);
+    /*read html attribute*/
     position: absolute;
     left: 10px;
     font-weight: bold;
