@@ -5,16 +5,100 @@
     --button-color: rgb(43, 129, 160);
 }
 
-.body-div {
+.landing-div {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.body-sub{
+    flex: 1;
+    height: 100vh;
+    display: flex;
     flex-direction: column;
+}
+
+#preview-div{
+    background-color: var(--maindiv-color);
+    flex-direction: column;
+}
+
+#preview-div h1{
+    width: 30%;
+    min-width: 235px;
+    color: black;
+    background-color: white;
+    text-align: center;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 1% 0;
+}
+
+ul{
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+ul li{
+    font-size: 1.3rem;
+    font-weight: 600;
+    list-style: none;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+#access-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#user-access-div{
+    width: 20%;
+    min-width: 200px;
+    padding: 25px;
+}
+
+.user-info-div{
+    border-radius: 15px;
+    border: 2px solid white;
+    padding: 2%;
+    margin-top: 50px;
+}
+
+.user-info-div h3{
+    text-align: center;
+}
+
+.user-info-div p {
+    text-align: center;
+}
+
+#info-div{
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 
 /*=====RESPONSIVE=====*/
+@media(max-width: 500px){
+    
+}
 
 @media(max-width: 800px){
-    
+    .landing-div{
+        flex-direction: column;
+    }
+
+    .body-sub{
+        padding: 50px;
+    }
 }

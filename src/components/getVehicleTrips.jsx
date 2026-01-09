@@ -18,7 +18,9 @@ function GetVehicleTrips() {
     const [purpose, setPurpose] = useState("");
     const [trip_type, setTrip_type] = useState("business");
     const [message, setMessage] = useState("");
+    const [cncl_message, setCnclMessage] = useState("");
     const [warning, setWarning] = useState("");
+    const [lastKm, setLastKm] = useState("null");
 
     const dialogRef = useRef(null);
 
@@ -39,15 +41,21 @@ function GetVehicleTrips() {
         const resTrips = await fetch(`http://localhost/cardoc/backend/trips.php?vehicle_id=${id}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
+
         const tripsData = await resTrips.json();
-        setTrips(tripsData);
+
+        if (tripsData.status === "success") {
+            setTrips(tripsData.trips);     //  Array
+            setLastKm(tripsData.last_km);  // int or null
+        } else {
+            setTrips([]);
+            setLastKm(null);
+        }
     };
 
     useEffect(() => {
         fetchVehicle();
     }, [id]);
-
-
 
     if (!vehicle) return <div>Lade Fahrzeug…</div>;
 
@@ -56,12 +64,11 @@ function GetVehicleTrips() {
     //show dialog
     const openDialog = () => {
         console.log("OPEN DIALOG");  // Debug
-        if (trips.length > 0) {
-            setStart_km(trips[0].end_km);
-        } else {
-            setStart_km(""); // first vehicle, no trips
-        }
-        if (dialogRef.current) dialogRef.current.showModal();
+        setStart_km(Number(lastKm) || 0);
+        setEnd_km("");
+        setWarning("");
+        dialogRef.current?.showModal();
+        console.log("lastKm opening dialog:", lastKm); //DEBUG
     };
 
     // close dialog
@@ -154,9 +161,9 @@ function GetVehicleTrips() {
             const token = localStorage.getItem("token");
 
             const response = await fetch(
-                "http://localhost/cardoc/backend/trips.php",
+                "http://localhost/cardoc/backend/cancel_trip.php",
                 {
-                    method: "POST", 
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
@@ -164,6 +171,7 @@ function GetVehicleTrips() {
                     body: JSON.stringify({
                         action: "cancel",
                         trip_id: tripId,
+                        vehicle_id: vehicle.id,
                     }),
                 }
             );
@@ -171,12 +179,13 @@ function GetVehicleTrips() {
             const result = await response.json();
 
             if (result.status === "success") {
-                // update ui
-                setTrips(prev =>
-                    prev.map(t =>
-                        t.id === tripId ? { ...t, canceled: 1 } : t
-                    )
-                );
+
+                await fetchVehicle();
+                setCnclMessage(result.cncl_message);
+                setTimeout(() => {
+                    setCnclMessage("");
+                }, 3000);
+
             } else {
                 alert(result.message || "Fehler beim Stornieren");
             }
@@ -199,6 +208,7 @@ function GetVehicleTrips() {
                     <button id="addTrip-button" onClick={openDialog}>Fahrt hinzüfügen</button>
                 </div>
                 <div id="msg-trips" className="msg-div">
+                    {cncl_message}
                     {message}
                 </div>
                 {/*DIALOG FOR TRIP */}
@@ -211,15 +221,22 @@ function GetVehicleTrips() {
                         <input placeholder="Fahrer" value={driver} onChange={e => setDriver(e.target.value)} required />
                         <input type="datetime-local" value={start_time} onChange={e => setStart_time(e.target.value)} required />
                         <input type="datetime-local" value={end_time} onChange={e => setEnd_time(e.target.value)} required />
-                        <input placeholder="Start km" value={start_km} onChange={e => setStart_km(e.target.value)} required />
+                        <input placeholder="Start km" value={start_km} onChange={e => setStart_km(e.target.value)} readOnly />
                         <input placeholder="End km" value={end_km} onChange={e => setEnd_km(e.target.value)} required />
-                        <input type="text" value={start_km && end_km
-                            ? Number(end_km) - Number(start_km)
-                            : ""} disabled />
+                        <input
+                            type="text"
+                            value={
+                                start_km !== "" && end_km !== ""
+                                    ? Number(end_km) - Number(start_km)
+                                    : ""
+                            }
+                            disabled
+                        />
                         <input placeholder="Startort" value={start_location} onChange={e => setStart_location(e.target.value)} required />
                         <input placeholder="Zielort" value={end_location} onChange={e => setEnd_location(e.target.value)} required />
                         <input placeholder="Zweck" value={purpose} onChange={e => setPurpose(e.target.value)} required />
-                        <select name="trip_type" required>
+                        <select name="trip_type" value={trip_type}
+                            onChange={e => setTrip_type(e.target.value)} required>
                             <option value="business">Geschäftlich</option>
                             <option value="private">Privat</option>
                             <option value="commute">Pendeln</option>
@@ -251,11 +268,17 @@ function GetVehicleTrips() {
                                     <th>Art</th>
                                     <th>Fahrer</th>
                                     <th>erstellt am</th>
+                                    <th className="cancel_column">Storniert am</th>
+                                    <th className="cancel_column">Stoniert durch</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {trips.map(trip => (
-                                    <tr key={trip.id} onClick={() => cancelTrip(trip.id)}>
+                                    <tr
+                                        key={trip.id}
+                                        onClick={() => !trip.canceled && cancelTrip(trip.id)}
+                                        className={trip.canceled ? "trip-canceled" : ""}
+                                    >
                                         <td data-label="Startzeit">{trip.start_time}</td>
                                         <td data-label="Endzeit">{trip.end_time}</td>
                                         <td data-label="Startpunkt">{trip.start_location}</td>
@@ -267,6 +290,8 @@ function GetVehicleTrips() {
                                         <td data-label="Art">{trip.trip_type}</td>
                                         <td data-label="Fahrer">{trip.driver}</td>
                                         <td data-label="erstellt am">{trip.created_at}</td>
+                                        <td data-label="Storniert am" className="cancel_column">{trip.canceled_at || "-"}</td>
+                                        <td data-label="Storniert durch" className="cancel_column">{trip.canceled_by || "-"}</td>
 
 
                                     </tr>

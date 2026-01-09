@@ -18,18 +18,49 @@ $pdo = new PDO($dsn, $dbusername, $dbpassword, $options);
 
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-     $vehicle_id = isset($_GET['vehicle_id']) ? (int)$_GET['vehicle_id'] : 0;
+    $vehicle_id = isset($_GET['vehicle_id']) ? (int) $_GET['vehicle_id'] : 0;
 
     if (!$vehicle_id) {
         echo json_encode(["status" => "error", "message" => "vehicle_id fehlt"]);
         exit;
     }//get vehicle id from url/react
-    
-    $stmt = $pdo->prepare("SELECT * FROM trips WHERE vehicle_id = ? ORDER BY start_time DESC");
+
+    //=====GET TRIPS=====
+    //get all trips (canceled and valid)
+    $stmt = $pdo->prepare("
+    SELECT *
+    FROM trips
+    WHERE vehicle_id = ?
+    ORDER BY start_time DESC
+");
     $stmt->execute([$vehicle_id]);
-    echo json_encode($stmt->fetchAll());
+    $trips = $stmt->fetchAll();
+
+    // get last valid km, no canceled
+    $stmtKm = $pdo->prepare("
+    SELECT end_km
+    FROM trips
+    WHERE vehicle_id = ?
+      AND canceled = 0
+    ORDER BY end_time DESC
+    LIMIT 1
+");
+    $stmtKm->execute([$vehicle_id]);
+    $lastKm = $stmtKm->fetchColumn();
+    if ($lastKm === false) {
+    $lastKm = 0; //frontend shows 0 instead false
+}
+
+    // response to frontend (both querys)
+    echo json_encode([
+        "status" => "success",
+        "trips" => $trips,
+        "last_km" =>(int)$lastKm
+    ]);
     exit;
 }
+
+//=====POST=====
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);

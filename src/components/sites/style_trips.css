@@ -48,6 +48,12 @@ tr{
   cursor: pointer;
 }
 
+.trip-canceled {
+    background-color: #f0f0f0 !important; /* Hintergrund hellgrau */
+    color: #c13232; 
+    pointer-events: none; 
+}
+
 @media(max-width: 1000px) {
   thead {
     display: none;
