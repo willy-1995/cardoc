@@ -116,7 +116,7 @@ function Cars() {
     return (
         <div className="body-sub-div">
             <div id="vehicles-header-div">
-                <h3>Dein Fuhrpark</h3>
+                <h1>Dein Fuhrpark</h1>
                 <button id="add-button" onClick={openDialog}>Fahrzeug hinzufügen</button>
             </div>
             <div id="msg-addVehicle">

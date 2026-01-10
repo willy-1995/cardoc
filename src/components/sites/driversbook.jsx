@@ -11,7 +11,7 @@ function Driversbook() {
 
 
     return (
-        <div className="body-div">
+        <div className="body-div driversbook-div">
             <Home />
             <GetVehicleTrips />
         </div>

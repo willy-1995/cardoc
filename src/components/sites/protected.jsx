@@ -23,20 +23,17 @@ function Protected() {
             });
     }, []);
 
-    const logout = () => {
-        localStorage.removeItem("token");
-        window.location.href = "/login";
-    }
+    
 
     return (
-        <div className="body-div">
-            <div id="greeting">
-                <p>Hallo {username}</p>
-                <Link to={"/profile"} className="button">
+        <div className="body-div protected-div">
+            <div id="greeting-div">
+                <p id="greeting">Hallo {username}</p>
+                <Link to={"/profile"} className="button profile-link">
                     Profil
                 </Link>
-                <button onClick={logout}>Ausloggen</button>
             </div>
+                
             
             <div id="cars-container">
 

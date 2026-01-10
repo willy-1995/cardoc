@@ -28,10 +28,6 @@ function Login() {
             password: form.password.value
         };
 
-     
-
-
-        
         try {
             const response = await fetch('http://localhost/cardoc/backend/login.php', {
                 method: 'POST',
@@ -74,11 +70,11 @@ function Login() {
 
 
     return (
-        <div className="body-div">
+        <div className="body-div login-div">
             <form id="login-form" onSubmit={loginHandler} className="main-div">
                 <h1>Login</h1>
-                <input type="email" name="email" placeholder="Deine E-Mail-Adresse" />
-                <input type="password" name="password" placeholder="Dein Passwort" />
+                <input type="email" name="email" placeholder="E-Mail-Adresse" />
+                <input type="password" name="password" placeholder="Passwort" />
                 <button type="submit">Einloggen</button>
             </form>
             <div id="msg-login">

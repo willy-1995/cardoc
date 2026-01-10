@@ -87,6 +87,19 @@ ul li{
     margin-top: 50px;
 }
 
+#legals-div{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1% 0;
+}
+
+.legal-link{
+    margin-left: 25px;
+}
+
 
 /*=====RESPONSIVE=====*/
 @media(max-width: 500px){

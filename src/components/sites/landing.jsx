@@ -17,7 +17,7 @@ function Landing() {
                     <li> <a href="#access-div" className="button">Jetzt Testen</a></li>
                 </ul>
                 <div id="info-div" className="user-info-div">
-                    <h3>WICHTIGER HINWEIS!</h3>
+                    <h3>WICHTIGER HINWEIS</h3>
                     <p>Hierbei handelt es sich um eine Testversion. cardoc wird stetig weiterentwickelt und verbessert.
                         Die Plattform ist beim Anbieter  <a href="https://www.infinityfree.com/">www.infinityfree.com</a> zu Demonstrationszwecken gehostet.
                         Aus Datenschutzgründen sollten die angebotenen Zugangsdaten verwendet werden. Bei Registrierung mit eigenen Zugangsdaten, insbesondere 
@@ -43,7 +43,14 @@ function Landing() {
             </div>
 
 
-
+        <div id="legals-div">
+            <Link className="legal-link">
+                Impressum
+            </Link>
+            <Link className="legal-link">
+                Datenschutz
+            </Link>
+        </div>
         </div>
     )
 }

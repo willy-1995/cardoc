@@ -5,6 +5,19 @@
   --button-color: rgb(43, 129, 160);
 }
 
+.driversbook-div{
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+   margin: 0 auto;
+    margin-top: 100px;
+    height: 700px;
+    width: 80%;
+    
+}
+
 #trips-header-div {
   display: flex;
   align-items: center;
@@ -49,9 +62,20 @@ tr{
 }
 
 .trip-canceled {
-    background-color: #f0f0f0 !important; /* Hintergrund hellgrau */
-    color: #c13232; 
+    background-color: #aca5a5 !important; /* Hintergrund hellgrau */
+    color: #db2727; 
     pointer-events: none; 
+    opacity: 0.6;
+
+}
+
+.trip-canceled td{
+      border-bottom: 2px solid var(--background-color) !important;
+}
+
+.trip-canceled td:hover{
+  transition: all ease-in-out 200ms;
+  opacity: 0.8;
 }
 
 @media(max-width: 1000px) {

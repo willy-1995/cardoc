@@ -27,24 +27,37 @@ html {
     font-size: 1.5rem;
 }
 
-.content-container {
-    position: fixed;
-    top: 100px;
-    height: 700px;
-    width: 80%;
-    
-}
-
-
 
 #home-div {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     padding-right: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     position: fixed;
-    top: 25px;
+    
+    background-color: var(--maindiv-color);
 }
+
+#home-div button{
+    margin-right: 25px;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--maindiv-color);
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+}
+
+
+
 
 
 
@@ -85,6 +98,7 @@ button,
     padding: 5px 20px;
     border-radius: 15px;
     cursor: pointer;
+    
 }
 
 button:hover {
@@ -100,6 +114,8 @@ button:hover {
     transition: all ease-in-out 200ms;
 
 }
+
+
 
 
 input,
