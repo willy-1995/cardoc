@@ -78,7 +78,11 @@ tr{
   opacity: 0.8;
 }
 
-@media(max-width: 1000px) {
+#wng-trips{
+  margin: 25px;
+}
+
+@media(max-width: 1200px) {
   thead {
     display: none;
   }

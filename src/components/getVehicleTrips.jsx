@@ -218,29 +218,64 @@ function GetVehicleTrips() {
                         <div id="wng-trips" className="msg-div">
                             {warning}
                         </div>
-                        <input placeholder="Fahrer" value={driver} onChange={e => setDriver(e.target.value)} required />
-                        <input type="datetime-local" value={start_time} onChange={e => setStart_time(e.target.value)} required />
-                        <input type="datetime-local" value={end_time} onChange={e => setEnd_time(e.target.value)} required />
-                        <input placeholder="Start km" value={start_km} onChange={e => setStart_km(e.target.value)} readOnly />
-                        <input placeholder="End km" value={end_km} onChange={e => setEnd_km(e.target.value)} required />
-                        <input
-                            type="text"
-                            value={
-                                start_km !== "" && end_km !== ""
-                                    ? Number(end_km) - Number(start_km)
-                                    : ""
-                            }
-                            disabled
-                        />
-                        <input placeholder="Startort" value={start_location} onChange={e => setStart_location(e.target.value)} required />
-                        <input placeholder="Zielort" value={end_location} onChange={e => setEnd_location(e.target.value)} required />
-                        <input placeholder="Zweck" value={purpose} onChange={e => setPurpose(e.target.value)} required />
-                        <select name="trip_type" value={trip_type}
-                            onChange={e => setTrip_type(e.target.value)} required>
-                            <option value="business">Geschäftlich</option>
-                            <option value="private">Privat</option>
-                            <option value="commute">Pendeln</option>
-                        </select>
+                        <label htmlFor="Fahrerin">
+                            Fahrer/in
+                            <input placeholder="Fahrer/in" value={driver} onChange={e => setDriver(e.target.value)} required />
+                        </label>
+                        
+                        <label htmlFor="start_time">
+                            Datum & Uhrzeit Start
+                            <input type="datetime-local" id="start_time" value={start_time} onChange={e => setStart_time(e.target.value)} required />
+                        </label>
+                        <label htmlFor="end_time">
+                            Datum & Uhrzeit Ziel
+                            <input type="datetime-local" id="end_time" value={end_time} onChange={e => setEnd_time(e.target.value)} required />
+                        </label>
+                        <label htmlFor="start_km">
+                            KM-Stand Start (automatisch)
+                            <input placeholder="Start_km" id="start_km" value={start_km} onChange={e => setStart_km(e.target.value)} readOnly />
+                        </label>
+                        <label htmlFor="end_km">
+                            KM-Stand Ende
+                            <input placeholder="KM-Stand Ende" id="end_km" value={end_km} onChange={e => setEnd_km(e.target.value)} required />
+                        </label>
+
+                        <label htmlFor="distance_km">
+                            Distanz in KM (automatisch)
+                            <input
+                                type="text"
+                                id="distance_km"
+                                value={
+                                    start_km !== "" && end_km !== ""
+                                        ? Number(end_km) - Number(start_km)
+                                        : ""
+                                }
+                                disabled
+                            />
+                        </label>
+                        <label htmlFor="start_location">
+                            Startort
+                            <input placeholder="Startort" id="start_location" value={start_location} onChange={e => setStart_location(e.target.value)} required />
+                        </label>
+                        <label htmlFor="end_location">
+                            Zielort
+                            <input placeholder="Zielort" id="end_location" value={end_location} onChange={e => setEnd_location(e.target.value)} required />
+                        </label>
+                        <label htmlFor="purpose">
+                            Grund der Fahrt
+                            <input placeholder="Zweck" id="purpose" value={purpose} onChange={e => setPurpose(e.target.value)} required />
+                        </label>
+
+                        <label htmlFor="trip_type">
+                            Fahrtentyp
+                            <select name="trip_type" id="trip_type" value={trip_type}
+                                onChange={e => setTrip_type(e.target.value)} required>
+                                <option value="business">Geschäftlich</option>
+                                <option value="private">Privat</option>
+                                <option value="commute">Pendeln</option>
+                            </select>
+                        </label>
+
                         <div className="dialog-button-div">
                             <button type="button" onClick={handleSubmit}>Speichern</button>
                             <button type="button" onClick={closeDialog}>Abbrechen</button> {/*type has to be button, or handled as submit*/}

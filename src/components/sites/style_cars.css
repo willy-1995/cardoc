@@ -79,8 +79,10 @@ summary {
     font-weight: 600;
     border-radius: 15px;
     cursor: pointer;
-    
+}
 
+#msg-addVehicle{
+    margin-bottom: 25px;
 }
 
 
@@ -89,12 +91,21 @@ summary {
         width: 100%;
     }
 
+     #vehicles-header-div{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
     #add-button{
         font-size: 0.7rem;
         font-weight: 600;
+        
     }
 
     .more-data-div{
         justify-content: center;
     }
+
+   
 }

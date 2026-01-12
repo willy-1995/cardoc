@@ -5,8 +5,10 @@
     --button-color: rgb(43, 129, 160);
 }
 
-.profile-div{
 
+.content-div{
+    width: 80%;
+    margin: 0 auto;
 }
 
 .profile-div h1{
@@ -43,6 +45,7 @@
     margin: 0 auto;
     padding: 15px;
     border-radius: 15px;
+    justify-content: center;
 }
 
 .details-content input{
@@ -54,6 +57,7 @@
     text-align: center;
     cursor: pointer;
     opacity: 0.7;
+    cursor: not-allowed;
 }
 
 #hard-delete-button:hover{
@@ -87,18 +91,52 @@
     
 }
 
+#profile-msg{
+    margin-bottom: 25px;
+}
+
 #logout-msg{
+    position: fixed;
+    inset: 0;
+    background-color: var(--maindiv-color);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: var(--maindiv-color);
-    width: 100vw;
-    height: 100vh;
     z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+}
+
+#inactive-msg{
+    position: fixed;
+    inset: 0;
+    background-color: var(--maindiv-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+@media(max-width: 1200px){
+    .profile-button{
+        width: 50% ;
+    }
+
+    #profile-details{
+        width: 90%;
+    }
+}
+
+@media(max-width: 900px){
+    .details-content{
+    width: 100%;
+}
+
+}
+
+@media(max-width: 900px){
+   .profile-button{
+        width: 90% ;
+    } 
+
 }

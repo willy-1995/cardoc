@@ -14,13 +14,17 @@ html {
     background-color: var(--background-color);
     font-size: 1.1rem;
     scroll-behavior: smooth;
+    overflow-x: hidden !important;
 }
 
-.body-div {
+body{
     width: 100vw;
-    min-height: 100vh;
+}
+.body-div{
     background-color: var(--background-color);
     color: white;
+    width: 100vw;
+    min-height: 100vh;
 }
 
 .icon {
@@ -115,7 +119,13 @@ button:hover {
 
 }
 
-
+label{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
 
 input,
@@ -208,6 +218,11 @@ details>summary {
 }
 
 /*=====RESPONSIVE=====*/
+@media(max-width: 900px) {
+    dialog {
+        width: 90%;
+    }
+}
 
 @media(max-width: 600px) {
     html {
@@ -228,10 +243,6 @@ details>summary {
 
     #regist-heading {
         font-size: 2.5rem;
-    }
-
-    dialog {
-        width: 90%;
     }
 
     .dialog-div h3 {

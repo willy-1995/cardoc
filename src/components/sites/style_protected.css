@@ -42,7 +42,7 @@
 
 
 /*=====RESPONSIVE=====*/
-@media(max-width: 800px){
+@media(max-width: 900px){
     #cars-container{
         width: 90%;
     }

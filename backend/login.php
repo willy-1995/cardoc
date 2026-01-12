@@ -48,16 +48,36 @@ try {
 
 //load user
 $stmt = $pdo->prepare(
-    "SELECT id, email, password, username FROM users WHERE email = ? LIMIT 1"
+    "SELECT id, email, password, username, deleted_at FROM users WHERE email = ? LIMIT 1"
 );
 $stmt->execute([$email]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//check if inactive
+if ($user && $user['deleted_at'] !== null) {
+    http_response_code(403);
+    echo json_encode([
+        "success" => false, 
+        "message" => "Dein Profil ist deaktiviert."
+    ]);
+    exit;
+}
 
 if (!$user || !password_verify($password, $user["password"])) {
     http_response_code(401);
     echo json_encode([
         "success" => false,
         "message" => "E-Mail oder Passwort falsch."
+    ]);
+    exit;
+}
+
+// check if account is deactivated
+if ($user['deleted_at'] !== null) {
+    http_response_code(403);
+    echo json_encode([
+        "success" => false,
+        "message" => "Dein Profil ist deaktiviert."
     ]);
     exit;
 }

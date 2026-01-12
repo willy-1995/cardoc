@@ -17,6 +17,16 @@ $pdo = new PDO($dsn, $dbusername, $dbpassword, $options);
 $data = json_decode(file_get_contents("php://input"), true);
 $action = $data["action"] ?? null;
 
+//=====READ=====
+if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    $sql = "SELECT * FROM users
+            WHERE id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$userId]);
+    echo json_encode($stmt->fetchAll());
+    exit;
+}
 
 //=====UPDATE=====
 if ($_SERVER['REQUEST_METHOD'] === "POST" && $action === "update") {
@@ -52,33 +62,27 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $action === "update") {
         $stmt->execute([$username, $email, $id]);
     }
 
-    echo json_encode(["status" => "success", "message" => "Daten erfolgreich geändert"]);
+    echo json_encode(["status" => "success", "message" => "Daten erfolgreich geändert!"]);
     exit;
 }
 
 //=====SOFT DELETE=====
 if ($_SERVER['REQUEST_METHOD'] === "POST" && $action === "soft_delete") {
-    $deleteUserId = $data['id'] ?? null;
+    
 
-    if (!$deleteUserId) {
+    if (!$userId) {
         echo json_encode(["status" => "error", "message" => "ID fehlt"]);
         exit;
     }
 
-    //protection, only user can delete himself
-    if ((int)$deleteUserId !== (int)$userId) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Keine Berechtigung"
-        ]);
-        exit;
-    }
 
-    $sql = "UPDATE users SET deleted = 1, active = 0, deleted_at = NOW(), deleted_by = ? WHERE id = ?AND deleted = 0";
-
+    $sql = "UPDATE users SET deleted_at = NOW() WHERE id = ? AND deleted_at IS NULL";
+    try{
+        
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$userId, $deleteUserId]); //user id from auth.php
+    $stmt->execute([$userId]); //user id from auth.php
 
+    
     if ($stmt->rowCount() === 0) {
         echo json_encode([
             "status" => "error",
@@ -92,6 +96,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $action === "soft_delete") {
         "message" => "Du hast dein Profil erfolgreich deaktiviert!"
     ]);
     exit;
+    }
+    catch( PDOException $e){
+          error_log("Soft delete Fehler: " . $e->getMessage());
+
+        echo json_encode([
+            "status" => "error",
+            "message" => "Deaktivierung fehlgeschlagen"
+        ]);
+        exit;
+    }
 }
 
 
