@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style_main.css";
 import "./style_login.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -43,7 +44,7 @@ function Login() {
                 body: JSON.stringify(data)
             });
 
-            
+
             const result = await response.json();
 
 
@@ -119,9 +120,12 @@ function Login() {
         <div className="body-div login-div">
             <form id="login-form" onSubmit={loginHandler} className="main-div">
                 <h1>Login</h1>
-                <input type="email" name="email" placeholder="E-Mail-Adresse" onChange={e => setLoginEmail(e.target.value)}/>
+                <input type="email" name="email" placeholder="E-Mail-Adresse" onChange={e => setLoginEmail(e.target.value)} />
                 <input type="password" name="password" placeholder="Passwort" onChange={e => setLoginPassword(e.target.value)} />
                 <button type="submit">Einloggen</button>
+                <Link to={"/landing"} id="to-landing" >
+                    <span className="link-normal">zur Startseite</span>
+                </Link>
             </form>
             <div id="msg-login">
                 {message}
@@ -131,7 +135,9 @@ function Login() {
                     <button onClick={reactivateAccount}>Profil reaktivieren</button>
                 </div>
             )}
+
         </div>
+
     )
 }
 

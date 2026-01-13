@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./sites/style_trips.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 function GetVehicleTrips() {
     const { id } = useParams(); // get id from url
@@ -22,10 +25,17 @@ function GetVehicleTrips() {
     const [warning, setWarning] = useState("");
     const [lastKm, setLastKm] = useState("null");
 
+    //states for filter
+    const [showFilter, setShowFilter] = useState(true);
+    const [showFilterContent, setShowFilterContent] = useState(false);
+    const [activeTrip, setActiveTrip] = useState(true);
+    const [canceledTrip, setCanceledTrip] = useState(false);
+
+
     const dialogRef = useRef(null);
 
 
-
+    //=====GET VEHICLE + TRIPS=====
     const fetchVehicle = async () => {
         const token = localStorage.getItem("token");
 
@@ -56,6 +66,53 @@ function GetVehicleTrips() {
     useEffect(() => {
         fetchVehicle();
     }, [id]);
+
+    //=====FILTER-HANDLING=====
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 800px)");
+
+        const updateFilterstate = (e) => {
+            if (e.matches) {
+                setShowFilter(true);
+                setShowFilterContent(false);
+            } else {
+                setShowFilter(false);
+                setShowFilterContent(true);
+            }
+
+        };
+
+        //initial state
+        updateFilterstate(mediaQuery);
+
+        mediaQuery.addEventListener("change", updateFilterstate);
+
+        //if mediaquery changes
+        return () => {
+            mediaQuery.removeEventListener("change", updateFilterstate);
+        };
+
+    }, []);
+
+    //show filter content
+    const filterActive = () => {
+        setShowFilter(false);
+        setShowFilterContent(true);
+    }
+
+    //close filter
+    const filterInactive = () => {
+        setShowFilterContent(false);
+        setShowFilter(true);
+    }
+
+    //====SHOW/HIDE TRIPS=====
+    const filteredTrips = trips.filter(trip => {
+        if (!activeTrip && !trip.canceled) return false;
+        if (!canceledTrip && trip.canceled) return false;
+        return true;
+    });
+
 
     if (!vehicle) return <div>Lade Fahrzeug…</div>;
 
@@ -196,6 +253,9 @@ function GetVehicleTrips() {
     };
 
 
+
+
+
     return (
         <div className="content-container">
             <h1>Fahrtenbuch</h1>
@@ -207,6 +267,33 @@ function GetVehicleTrips() {
 
                     <button id="addTrip-button" onClick={openDialog}>Fahrt hinzüfügen</button>
                 </div>
+                {showFilter && (
+                    <div className="filterIcon-div">
+                        <div className="icon-div filter" onClick={filterActive}>
+                            <FontAwesomeIcon icon={faFilter} />
+                        </div>
+                    </div>
+                )}
+
+                {showFilterContent && (
+                    <div id="filter-div">
+                        <div className="ok-div">
+                            <div className="icon-div" onClick={filterInactive}>
+                                <FontAwesomeIcon icon={faCheck} className="icon ui-icon" id="filter-check" />
+                            </div>
+                        </div>
+                        <label htmlFor="active">
+                            Gültige Fahrten
+                            <input type="checkbox" id="active" checked={activeTrip} onChange={() => setActiveTrip(prev => !prev)} />
+                        </label>
+                        <label htmlFor="inactive" checked={canceledTrip}
+                            onChange={() => setCanceledTrip(prev => !prev)}>
+                            Stornierte Fahrten
+                            <input type="checkbox" id="inactive" />
+                        </label>
+                    </div>
+                )}
+
                 <div id="msg-trips" className="msg-div">
                     {cncl_message}
                     {message}
@@ -222,7 +309,7 @@ function GetVehicleTrips() {
                             Fahrer/in
                             <input placeholder="Fahrer/in" value={driver} onChange={e => setDriver(e.target.value)} required />
                         </label>
-                        
+
                         <label htmlFor="start_time">
                             Datum & Uhrzeit Start
                             <input type="datetime-local" id="start_time" value={start_time} onChange={e => setStart_time(e.target.value)} required />
@@ -308,7 +395,7 @@ function GetVehicleTrips() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {trips.map(trip => (
+                                {filteredTrips.map(trip => (
                                     <tr
                                         key={trip.id}
                                         onClick={() => !trip.canceled && cancelTrip(trip.id)}

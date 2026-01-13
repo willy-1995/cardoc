@@ -1,7 +1,30 @@
+.vehicleDetails-div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 #vehicledata-header-div{
     margin-bottom: 50px;
 }
 
-#vehicledata-div{
+.vehicledata-div{
     margin-bottom: 25px;
+}
+
+#home-div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+@media(max-width: 600px) {
+    .vehicledata-div{
+        margin: 0 auto;
+        margin-bottom: 25px;
+        width: 100%;
+    }
 }

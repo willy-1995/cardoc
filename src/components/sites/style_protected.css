@@ -9,7 +9,7 @@
     left: 0;
     top: 0;
     right: 0;
-    width: 100%;
+    min-width: 100%;
     background-color: var(--maindiv-color);
     display: flex;
     justify-content: space-between;

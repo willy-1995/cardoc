@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "./style_main.css";
 import "./style_landing.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCheck} from '@fortawesome/free-solid-svg-icons'; 
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import {faArrowUpRightFromSquare} from '@fortawesome/free-solid-svg-icons';
 
 function Landing() {
     return (
@@ -19,11 +20,11 @@ function Landing() {
                 <div id="info-div" className="user-info-div">
                     <h3>WICHTIGER HINWEIS</h3>
                     <p>Hierbei handelt es sich um eine Testversion. cardoc wird stetig weiterentwickelt und verbessert.
-                        Die Plattform ist beim Anbieter  <a href="https://www.infinityfree.com/">www.infinityfree.com</a> zu Demonstrationszwecken gehostet.
-                        Aus Datenschutzgründen sollten die angebotenen Zugangsdaten verwendet werden. Bei Registrierung mit eigenen Zugangsdaten, insbesondere 
-                        private E-Mail-Adresse, sollte das Profil nach Testung wieder gelöscht werden oder eine ausgedachte E-Mail-Adresse verwendet werden!
+                        Die Plattform ist beim Anbieter  <a href="https://www.infinityfree.com/" className="link-normal">www.infinityfree.com<FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a> zu Demonstrationszwecken gehostet.
+                        Bitte nutze die unten angegebenen Login-Daten, eine ausgedachte E-Mail-Adresse oder lösche dein Profil nach Testung.
                     </p>
                 </div>
+
             </div>
             <div className="body-sub" id="access-div">
                 <div className="main-div" id="user-access-div">
@@ -41,16 +42,15 @@ function Landing() {
 
                 </div>
             </div>
+            <div id="legals-div">
+                <Link className="legal-link">
+                    <span className="link-normal">Impressum</span>
+                </Link>
+                <Link className="legal-link">
+                    <span className="link-normal">Datenschutz</span>
+                </Link>
+            </div>
 
-
-        <div id="legals-div">
-            <Link className="legal-link">
-                Impressum
-            </Link>
-            <Link className="legal-link">
-                Datenschutz
-            </Link>
-        </div>
         </div>
     )
 }

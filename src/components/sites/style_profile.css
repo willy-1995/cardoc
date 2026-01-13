@@ -9,6 +9,7 @@
 .content-div{
     width: 80%;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 .profile-div h1{
@@ -26,6 +27,11 @@
 #profile-details{
     width: 70%;
     margin: 0 auto;
+    background-color: var(--maindiv-color);
+    padding-left: 10px;
+    padding-top: 10px;
+    border-radius: 15px;
+    margin-bottom: 100px;
 }
 
 #profile-details summary{
@@ -34,14 +40,12 @@
     justify-content: flex-start;
 }
 
-
-
 .details-content{
     display: flex;
     flex-direction: column;
     gap: 20px;
     background-color: var(--maindiv-color);
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     padding: 15px;
     border-radius: 15px;
@@ -58,16 +62,17 @@
     cursor: pointer;
     opacity: 0.7;
     cursor: not-allowed;
+    margin-bottom: 25px;
 }
 
 #hard-delete-button:hover{
     transition: all ease-in-out 200ms;
     opacity: 1;
-    margin-bottom: 50px;
+    
 }
 
 .profile-button{
-    width: 30%;
+    width: 250px;
     margin: 0 auto;
     
 }
@@ -119,7 +124,7 @@
 
 @media(max-width: 1200px){
     .profile-button{
-        width: 50% ;
+        
     }
 
     #profile-details{
@@ -134,9 +139,12 @@
 
 }
 
-@media(max-width: 900px){
-   .profile-button{
-        width: 90% ;
-    } 
-
+@media(max-width: 500px){
+    
+    
+    .profile-button{
+       max-width: 90%;
+    }
 }
+
+

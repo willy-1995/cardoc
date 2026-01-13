@@ -34,9 +34,6 @@
     border-radius: 15px;
 }
 
-.vehicle-options{
-    font-weight: 800;
-}
 
 .link-button{
     min-width: 10%;
@@ -98,8 +95,8 @@ summary {
     }
 
     #add-button{
-        font-size: 0.7rem;
-        font-weight: 600;
+        
+        
         
     }
 

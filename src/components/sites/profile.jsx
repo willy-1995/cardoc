@@ -34,7 +34,7 @@ function Profile() {
             const data = await res.json();
 
             if (data.length > 0) { //bc response is an array
-                if (data[0].deleted_at !== null){
+                if (data[0].deleted_at !== null) {
                     console.warn("Profil ist deaktiviert. Logout...");
                     logout();
                     return;
@@ -121,7 +121,7 @@ function Profile() {
             if (!res.ok) throw new Error("Server-Fehler");
 
             const result = await res.json();
-            
+
 
             if (result.status === "success") {
                 setShowInactive(true);
@@ -210,10 +210,11 @@ function Profile() {
                     )}
 
                 </div>
-                <footer>
-                    <button onClick={logout} id="logout-button">Logout</button>
-                </footer>
+
             </div>
+            <footer>
+                <button onClick={logout} id="logout-button">Logout</button>
+            </footer>
         </div>
 
     )

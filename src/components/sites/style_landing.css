@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .body-sub{
@@ -64,14 +65,14 @@ ul li{
     width: 20%;
     min-width: 200px;
     padding: 25px;
-}
-
-.user-info-div{
-    border-radius: 15px;
-    border: 2px solid white;
-    padding: 2%;
+    margin-bottom: 25px;
     margin-top: 50px;
 }
+
+#login-data-div{
+    margin-bottom: 50px;
+}
+
 
 .user-info-div h3{
     text-align: center;
@@ -85,14 +86,16 @@ ul li{
     max-width: 80%;
     margin: 0 auto;
     margin-top: 50px;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 1%;
+    margin-bottom: 50px;
 }
 
 #legals-div{
     width: 100%;
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
     padding: 1% 0;
 }
 
@@ -102,8 +105,18 @@ ul li{
 
 
 /*=====RESPONSIVE=====*/
-@media(max-width: 500px){
-    
+@media(max-width: 1200px){
+    .landing-div{
+        flex-direction: column;
+    }
+
+    #user-access-div{
+        margin-top: 200px;
+    }
+
+    #login-data-div{
+        margin-bottom: 200px;
+    }
 }
 
 @media(max-width: 800px){
@@ -114,4 +127,29 @@ ul li{
     .body-sub{
         padding: 50px;
     }
+
+    #info-div{
+        min-width: 90%;
+        padding: 2%;
+    }
 }
+
+@media(max-width: 600px){
+    #legals-div{
+        display: flex;
+        flex-direction: column;
+        background-color: var(--maindiv-color);
+        padding-top: 25px;
+
+    }
+
+    #legals-div a{
+        margin: 0 auto;
+        margin-bottom: 25px;
+    }
+
+    #login-data-div{
+        margin-bottom: 400px;
+    }
+}
+

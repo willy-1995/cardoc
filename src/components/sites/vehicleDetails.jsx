@@ -5,7 +5,7 @@ import "./style_vehicledata.css";
 
 function VehicleDetails(){
     return(
-        <div className="body-div">
+        <div className="body-div vehicleDetails-div">
            <Home />
            <GetVehicleData />
 

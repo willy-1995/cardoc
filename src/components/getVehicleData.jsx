@@ -40,12 +40,12 @@ function GetVehicleData() {
                 </h3>
             </div>
 
-            <div id="vehicledata-div" className="main-div">
+            <div className="vehicledata-div main-div">
                 <h2>Fahrzeugdaten</h2>
                 
             </div>
 
-            <div id="maintenance-div" className="main-div">
+            <div className="vehicledata-div main-div">
                 <h2>Wartungshistorie</h2>
 
             </div>

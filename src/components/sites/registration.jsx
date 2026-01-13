@@ -1,5 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./style_main.css";
+import "./style_registration.css";
 
 function Registration() {
 
@@ -57,7 +60,7 @@ function Registration() {
     }
 
     return (
-        <div className="body-div">
+        <div className="body-div registration-div">
             <form id="regist-form" onSubmit={registHandler} className="main-div">
 
                 <h1 id="regist-heading">Registrierung</h1>
@@ -65,6 +68,9 @@ function Registration() {
                 <input type="email" name="email" placeholder="Deine E-Mail-Adresse" />
                 <input type="password" name="password" placeholder="Dein Passwort" />
                 <button type="submit">Registrieren</button>
+                <Link to={"/landing"} id="to-landing" >
+                    <span className="link-normal">zur Startseite</span>
+                </Link>
             </form>
             <div id="msg-regist">
 
