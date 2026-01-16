@@ -5,6 +5,11 @@
     flex-direction: column;
 }
 
+#login-form input{
+    margin: 0 auto;
+    width: 100%;
+}
+
 #msg-login{
     color: white;
     margin-top: 20px;

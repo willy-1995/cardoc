@@ -5,3 +5,24 @@
     flex-direction: column;
 }
 
+#regist-form{
+    margin-bottom: 25px;
+}
+
+
+
+#regist-form input{
+    margin: 0 auto;
+    width: 100%;
+}
+
+#msg-regist{
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media(max-width: 430px){
+    #regist-form h1{
+    font-size: 2rem;
+}
+}

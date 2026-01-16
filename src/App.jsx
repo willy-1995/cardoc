@@ -18,6 +18,7 @@ function App() {
    <div id='app'>
       <Router>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route path="/landing" element={<Landing />} />
           <Route path='/registration' element={<Registration />}/>
           <Route path='/login' element={<Login />}/>

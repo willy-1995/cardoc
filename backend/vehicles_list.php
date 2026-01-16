@@ -14,7 +14,7 @@ $options = [
 $pdo = new PDO($dsn, $dbusername, $dbpassword, $options);
 //_____
 
-//CHSOE ACTIONS
+//CHOSE ACTIONS
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $sql = "SELECT * FROM vehicles
@@ -40,9 +40,45 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $stmt->execute([$userId, $brand, $model, $license_plate, $details]);
     echo json_encode(["status" => "success", "message" => "Fahrzeug gespeichert"]);
     exit;
-
-} else {
-    echo json_encode(["status" => "error", "message" => "Keine Daten empfangen"]);
 }
+
+if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
+    $data = json_decode(file_get_contents("php://input"), true);
+    $vehicle_id = $data['id'] ?? null;
+
+    if (!$vehicle_id) {
+        echo json_encode(["status" => "error", "message" => "Fahrzeug-ID konnte nicht gefunden werden!"]);
+        exit;
+    }
+
+    try {
+        $sql = "DELETE FROM vehicles WHERE id = ? AND user_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$vehicle_id, $userId]);
+
+        // check if vehicle really deleted
+        if ($stmt->rowCount() > 0) {
+            echo json_encode([
+                "status" => "success",
+                "success" => true,
+                "message" => "Fahrzeug wurde erfolgreich entfernt."
+            ]);
+        } else {
+            echo json_encode([
+                "status" => "error",
+                "message" => "Fahrzeug nicht gefunden oder keine Berechtigung."
+            ]);
+        }
+    } catch (PDOException $e) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Datenbankfehler: " . $e->getMessage()
+        ]);
+    }
+    exit;
+}
+
+
+
 
 ?>

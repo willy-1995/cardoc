@@ -5,7 +5,7 @@ $allowed_origin = "http://localhost:5173"; // React/ Vite Dev-Server
 header("Access-Control-Allow-Origin: $allowed_origin");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type, Authorization"); //Authorization, bc it is in fetch request, need to be allowed in cors
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE");
 header("Content-Type: application/json; charset=UTF-8"); // for read json
 
 // Preflight-Anfrage abfangen

@@ -27,4 +27,8 @@
         margin-bottom: 25px;
         width: 100%;
     }
+
+    #delete-vehicle{
+        margin: 0 auto;
+    }
 }

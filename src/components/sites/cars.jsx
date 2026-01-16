@@ -104,12 +104,50 @@ function Cars() {
             console.error("FETCH FEHLER:", err);
         }
 
-
-
-
     };
 
+    const deleteVehicle = async (vehicleId) => {
+        if (!confirm("Fahrzeug unwiderruflich löschen? \n Alle Fahrzeugdaten und das Fahrtenbuch gehen verloren.")) {
+            return
+        };
 
+        try {
+
+            const token = localStorage.getItem("token");
+            const response = await fetch("http://localhost/cardoc/backend/vehicles_list.php",
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ id: vehicleId }),
+                });
+
+            const result = await response.json();
+
+            if (result.success) {
+                await fetchVehicles();
+                setMessage(result.message || "Fahrzeug wurde gelöscht!");
+            }
+            else (
+                setMessage(result.message)
+            )
+
+
+        }
+        catch (err) {
+            console.error("Löschfehler:", err); //DEBUG
+            setMessage("Serverfehler beim Löschen.");
+        }
+
+        setInterval(() => {
+            setMessage("")
+        }, 3000);
+
+
+
+    }
 
 
 
@@ -150,8 +188,9 @@ function Cars() {
                             <Link to={`/vehicles/${vehicle.id}/vehicleDetails`} className="button link-button">
                                 Fahrzeugdaten
                             </Link>
-                            
-
+                            <button id="delete-vehicle" className="link-button" onClick={() => deleteVehicle(vehicle.id)}>
+                                Fahrzeug löschen
+                            </button>
                         </div>
                     </details>
                 ))}

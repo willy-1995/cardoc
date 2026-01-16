@@ -49,8 +49,7 @@ function GetVehicleData() {
                 <h2>Wartungshistorie</h2>
 
             </div>
-
-
+            
 
         </div>
     )
