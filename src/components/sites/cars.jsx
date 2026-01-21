@@ -106,6 +106,8 @@ function Cars() {
 
     };
 
+    //=====DELETE=====
+
     const deleteVehicle = async (vehicleId) => {
         if (!confirm("Fahrzeug unwiderruflich löschen? \n Alle Fahrzeugdaten und das Fahrtenbuch gehen verloren.")) {
             return

@@ -4,7 +4,7 @@ import "./style_main.css";
 import "./style_landing.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import {faArrowUpRightFromSquare} from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 function Landing() {
     return (

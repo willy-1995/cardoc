@@ -8,20 +8,27 @@ use Firebase\JWT\Key;
 
 header("Content-Type: application/json; charset=UTF-8");
 
+//FROM API
 //=====READING ALL HEADERS BC JWT IS IN HEADER
 $headers = getallheaders();
 
-if (!isset($headers["Authorization"])) {
+$token = null;
+
+if (isset($headers["Authorization"])) {
+    // API
+    $token = str_replace("Bearer ", "", $headers["Authorization"]);
+} elseif (isset($_GET['token'])) {
+    //URL PDF-Export (window.open)
+    $token = $_GET['token'];
+}
+
+if (!$token) {
     http_response_code(401);
-    echo json_encode([
-        "success" => false,
-        "message" => "Kein Token gesendet."
-    ]);
+    //Only send json, if no pdf
+    echo json_encode(["success" => false, "message" => "Kein Token gesendet."]);
     exit;
 }
 
-//===== REMOVE BEARER BC JWT LIBRARY ONLY READS TOKEN, NOT TEXT
-$token = str_replace("Bearer ", "", $headers["Authorization"]);
 
 //=====VALIDATE AND DECODE JWT
 try {

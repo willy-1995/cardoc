@@ -4,6 +4,8 @@ import "./sites/style_trips.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 
 function GetVehicleTrips() {
     const { id } = useParams(); // get id from url
@@ -30,6 +32,10 @@ function GetVehicleTrips() {
     const [showFilterContent, setShowFilterContent] = useState(false);
     const [activeTrip, setActiveTrip] = useState(true);
     const [canceledTrip, setCanceledTrip] = useState(false);
+
+    //states for pdf
+    const [showPdf, setShowPdf] = useState(false);
+    const [selectedYear, setSelectedYear] = useState("2026");
 
 
     const dialogRef = useRef(null);
@@ -252,7 +258,26 @@ function GetVehicleTrips() {
         }
     };
 
+    //===== PDF =====
+    //show pdf screen
+    const showPdfScreen = () => {
+        setShowPdf(true);
+    }
 
+    const closePdfScreen = () => {
+        setShowPdf(false);
+    }
+
+    const pdfExport = async () => {
+        console.log("SUBMIT AUSGELÖST"); //DEBUG
+        const token =localStorage.getItem("token");
+        const url = "http://localhost/cardoc/backend/pdf_export.php";
+        const addedURL = `${url}?vehicle_id=${id}&year=${selectedYear}&token=${token}`; //from state
+
+        //trigger download
+        window.open(addedURL, "_blank");
+        
+    };
 
 
 
@@ -264,14 +289,43 @@ function GetVehicleTrips() {
                     <h3>
                         {vehicle.brand} {vehicle.model} {vehicle.license_plate}
                     </h3>
+                    <div className="header-buttons">
+                        <button id="addTrip-button" onClick={openDialog}>Fahrt hinzüfügen</button>
+                        <button id="pdf-button" onClick={showPdfScreen}>PDF Export</button>
+                    </div>
 
-                    <button id="addTrip-button" onClick={openDialog}>Fahrt hinzüfügen</button>
                 </div>
                 {showFilter && (
-                    <div className="filterIcon-div">
-                        <div className="icon-div filter" onClick={filterActive}>
-                            <FontAwesomeIcon icon={faFilter} />
+                    <div id="icon-div">
+                        <div className="filterIcon-div">
+                            <div className="icon-div pdfexport" onClick={showPdfScreen}>
+                                <FontAwesomeIcon icon={faFilePdf} />
+                            </div>
+                            <div className="icon-div filter" onClick={filterActive}>
+                                <FontAwesomeIcon icon={faFilter} />
+                            </div>
+                            <div className="icon-div addTripIcon" onClick={openDialog}>
+                                <FontAwesomeIcon icon={faSquarePlus} />
+
+                            </div>
                         </div>
+                    </div>
+                )}
+
+                {showPdf && (
+                    <div className="dialog">
+                        <h3>PDF Export</h3>
+                        <div id="pdf-select">
+                            <select name="select-year" id="select-year" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                        </div>
+                        <div className="dialog-button-div">
+                            <button onClick={pdfExport}>PDF erstellen</button>
+                            <button onClick={closePdfScreen}>Abbrechen</button>
+                        </div>
+
                     </div>
                 )}
 
