@@ -270,13 +270,13 @@ function GetVehicleTrips() {
 
     const pdfExport = async () => {
         console.log("SUBMIT AUSGELÖST"); //DEBUG
-        const token =localStorage.getItem("token");
+        const token = localStorage.getItem("token");
         const url = "http://localhost/cardoc/backend/pdf_export.php";
         const addedURL = `${url}?vehicle_id=${id}&year=${selectedYear}&token=${token}`; //from state
 
         //trigger download
         window.open(addedURL, "_blank");
-        
+
     };
 
 
@@ -313,19 +313,21 @@ function GetVehicleTrips() {
                 )}
 
                 {showPdf && (
-                    <div className="dialog">
-                        <h3>PDF Export</h3>
-                        <div id="pdf-select">
-                            <select name="select-year" id="select-year" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
-                            </select>
-                        </div>
-                        <div className="dialog-button-div">
-                            <button onClick={pdfExport}>PDF erstellen</button>
-                            <button onClick={closePdfScreen}>Abbrechen</button>
-                        </div>
+                    <div className="backdrop">
+                        <div className="dialog">
+                            <h3>PDF Export</h3>
+                            <div id="pdf-select">
+                                <select name="select-year" id="select-year" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                </select>
+                            </div>
+                            <div className="dialog-button-div">
+                                <button onClick={pdfExport}>PDF erstellen</button>
+                                <button onClick={closePdfScreen}>Abbrechen</button>
+                            </div>
 
+                        </div>
                     </div>
                 )}
 
