@@ -10,7 +10,7 @@ function Landing() {
     return (
         <div className="body-div landing-div">
             <div className="body-sub" id="preview-div">
-                <h1>cardoc</h1>
+                <h1>digiTour</h1>
                 <ul>
                     <li> <FontAwesomeIcon icon={faCheck} /> digitales Fahrtenbuch</li>
                     <li> <FontAwesomeIcon icon={faCheck} /> Steuerkonforme Buchführung</li>
