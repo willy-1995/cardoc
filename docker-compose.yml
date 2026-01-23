@@ -1,0 +1,44 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      #cardoc bi in root folder
+      - ./db-init:/docker-entrypoint-initdb.d
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./backend:/var/www/html # Spiegelt deinen lokalen PHP-Code
+    depends_on:
+      - db
+    environment:
+      # Hier geben wir dem PHP-Code die Infos aus der .env weiter
+      DB_HOST: db
+      DB_NAME: ${DB_NAME}
+      DB_PASS: ${DB_PASS}
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev # Wir nutzen das Dockerfile.dev für die entwicklung
+    ports:
+      - "3001:3000" # Vite läuft auf 3000
+    volumes:
+      - .:/app                # Dein Code wird live in den Container gespiegelt
+      - /app/node_modules     # WICHTIG: Erhält die im Container installierten Pakete
+    environment:
+      - VITE_WATCH_USE_POLLING=true # Zusätzliche Sicherheit für Vite
+    command: npm run dev      # Das überschreibt das CMD im Dockerfile!
+
+volumes:
+  db_data:

@@ -1,6 +1,6 @@
 <?php
 
-$allowed_origin = "http://localhost:5173"; // React/ Vite Dev-Server
+$allowed_origin = "http://localhost:3001"; // React/ Vite Dev-Server
 
 header("Access-Control-Allow-Origin: $allowed_origin");
 header("Access-Control-Allow-Credentials: true");

@@ -1,0 +1,16 @@
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Nur die Package-Dateien kopieren für schnelleres Caching
+COPY package*.json ./
+RUN npm install
+
+# Den Rest kopieren
+COPY . .
+
+EXPOSE 3001
+
+# Der Befehl wird meist über docker-compose gesteuert, 
+# aber wir setzen ihn hier als Fallback
+CMD ["npm", "run", "dev"]

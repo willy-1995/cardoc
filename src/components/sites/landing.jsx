@@ -19,8 +19,7 @@ function Landing() {
                 </ul>
                 <div id="info-div" className="user-info-div">
                     <h3>WICHTIGER HINWEIS</h3>
-                    <p>Hierbei handelt es sich um eine Testversion. cardoc wird stetig weiterentwickelt und verbessert.
-                        Die Plattform ist beim Anbieter  <a href="https://www.infinityfree.com/" className="link-normal">www.infinityfree.com<FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a> zu Demonstrationszwecken gehostet.
+                    <p>Testversion von cardoc - digitales Fahrtebuch. Erstellt mit React.js, PHP, MySQL und Docker.
                         Bitte nutze die unten angegebenen Login-Daten, eine ausgedachte E-Mail-Adresse oder lösche dein Profil nach Testung.
                     </p>
                 </div>
