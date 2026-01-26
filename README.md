@@ -14,7 +14,6 @@ TRY:
 - **Tamper-Proof Logging:** Integrated audit trail that documents any modifications to trip data, ensuring full transparency.
 - **PDF Export:** Generate tax-ready PDF reports instantly using the `dompdf` engine.
 - **Vehicle Management:** Centralized management for multiple company and private vehicles.
-- **Dark Mode Support:** Fully responsive UI with an optional night mode for comfortable use at any time.
 
 ## 🛠 Tech Stack
 | Layer | Technology |
