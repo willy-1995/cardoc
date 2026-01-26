@@ -6,8 +6,8 @@ CarDoc is a modern, web-based solution for legally compliant digital mileage log
 [![Security - Audit--Ready](https://img.shields.io/badge/Security-Audit--Ready-green?style=flat-square)](#)
 [![Stack - Docker](https://img.shields.io/badge/Stack-Docker-0db7ed?style=flat-square)](#)
 
-TRY: TRY:
-[![Deployment - GitHub Pages](https://img.shields.io/badge/Frontend-GitHub--Pages-blue?style=flat-square)](https://cardoc.infinityfree.me/)
+TRY: 
+[![Deployment - GitHub Pages](https://img.shields.io/badge/Frontend-digiTour-blue?style=flat-square)](https://cardoc.infinityfree.me/)
 
 ## 🌟 Key Features
 - **Tax Compliance:** Designed to follow the principles of timely and closed-loop logging required by tax authorities (e.g., German "Finanzamt").
