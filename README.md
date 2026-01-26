@@ -1,21 +1,35 @@
-<<<<<<< HEAD
-# React + Vite
+# 🚗 CarDoc – Digital Mileage Log
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CarDoc is a modern, web-based solution for legally compliant digital mileage logging. The application is specifically engineered to meet strict tax authority requirements for data integrity and audit-readiness.
 
-Currently, two official plugins are available:
+[![Platform - Web](https://img.shields.io/badge/Platform-Web-blue?style=flat-square)](#)
+[![Security - Audit--Ready](https://img.shields.io/badge/Security-Audit--Ready-green?style=flat-square)](#)
+[![Stack - Docker](https://img.shields.io/badge/Stack-Docker-0db7ed?style=flat-square)](#)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Key Features
+- **Tax Compliance:** Designed to follow the principles of timely and closed-loop logging required by tax authorities (e.g., German "Finanzamt").
+- **Tamper-Proof Logging:** Integrated audit trail that documents any modifications to trip data, ensuring full transparency.
+- **PDF Export:** Generate tax-ready PDF reports instantly using the `dompdf` engine.
+- **Vehicle Management:** Centralized management for multiple company and private vehicles.
+- **Dark Mode Support:** Fully responsive UI with an optional night mode for comfortable use at any time.
 
-## React Compiler
+## 🛠 Tech Stack
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React (Vite), JavaScript |
+| **Backend** | PHP 8.x |
+| **Database** | MySQL |
+| **Infrastructure** | Docker, Docker Compose |
+| **Reporting** | dompdf |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🏗 System Architecture
+The application is fully containerized using **Docker** for maximum portability and ease of deployment. The React frontend communicates via a REST API with the PHP backend, which manages secure data persistence in the MySQL database.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# cardoc
-digital driversbook
->>>>>>> 7ae8806de6c778855bfe98e40f98345b9d3c3760
+
+## 🚦 Quick Start (Docker)
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/your-username/cardoc.git](https://github.com/your-username/cardoc.git)
+   cd cardoc
