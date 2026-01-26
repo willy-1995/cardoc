@@ -24,6 +24,7 @@ TRY:
 | **Database** | MySQL |
 | **Infrastructure** | Docker, Docker Compose |
 | **Reporting** | dompdf |
+| **Deployment/ Hosting ** | infinityfree |
 
 ## 🏗 System Architecture
 The application is fully containerized using **Docker** for maximum portability and ease of deployment. The React frontend communicates via a REST API with the PHP backend, which manages secure data persistence in the MySQL database.
