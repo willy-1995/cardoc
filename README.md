@@ -1,4 +1,4 @@
-# 🚗 CarDoc – Digital Mileage Log
+# 🚗 digiTour (cardoc) 
 
 CarDoc is a modern, web-based solution for legally compliant digital mileage logging. The application is specifically engineered to meet strict tax authority requirements for data integrity and audit-readiness.
 
