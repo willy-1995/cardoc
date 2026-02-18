@@ -29,10 +29,3 @@ TRY:
 The application is fully containerized using **Docker** for maximum portability and ease of deployment. The React frontend communicates via a REST API with the PHP backend, which manages secure data persistence in the MySQL database.
 
 
-
-## 🚦 Quick Start (Docker)
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/your-username/cardoc.git](https://github.com/your-username/cardoc.git)
-   cd cardoc
